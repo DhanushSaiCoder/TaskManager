@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:3000/api/tasks';
+const baseURL = 'http://localhost:3000/tasks';
 
 document.addEventListener('DOMContentLoaded', fetchTasks);
 
