@@ -1,7 +1,14 @@
+*{
+    padding:none;
+    margin: none;
+    box-sizing: border-box;
+}
 body {
   font-family: Arial, sans-serif;
   text-align: center;
   padding: 20px;
+background-color: #161b22;
+color: #e2e2e2;
 }
 
 #task-form {
