@@ -43,7 +43,6 @@ body {
 /* Individual task styling */
 .task {
   border: 1.5px solid #ccc;
-  padding: 10px 30px;
   margin: 5px;
   width: auto;
   text-align: left;
@@ -52,6 +51,7 @@ body {
   background-color: #513232;
   max-width: 300px;
   word-wrap: break-word;
+  min-width: 140px;
 }
 
 /* Completed task styling */
@@ -168,4 +168,27 @@ body {
 }
 #taskSection::-webkit-scrollbar {
   display: none;
+}
+
+.updateBtn,.deleteBtn{
+  width:100%;
+  height:30px;
+  background: #e2e2e22f;
+  color:#e2e2e2;
+  border:none;
+  
+}
+.updateBtn{
+  border-bottom: 1px solid #e2e2e252;
+  border-top: 1px solid #e2e2e24d;
+
+}
+.h3,.p{
+  margin: 10px 10px;
+}
+.h3{
+  margin-bottom: 3px;
+}
+.description{
+  opacity: 0.4;
 }

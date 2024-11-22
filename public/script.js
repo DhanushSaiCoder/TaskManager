@@ -13,10 +13,10 @@ function fetchTasks() {
                 if(task.status){taskDiv.id ='completed'}
                 taskDiv.className = 'task';
                 taskDiv.innerHTML = `
-                    <h3>${task.title}</h3>
-                    <p>${task.description}</p>
-                    <button onclick="updateTask('${task._id}')">Update</button>
-                    <button onclick="deleteTask('${task._id}')">Delete</button>
+                    <h3 class="h3">${task.title}</h3>
+                    <p class="p" class="description">${task.description}</p>
+                    <button class="updateBtn" onclick="updateTask('${task._id}')">Update</button>
+                    <button class="deleteBtn" onclick="deleteTask('${task._id}')">Delete</button>
                 `;
                 tasksDiv.appendChild(taskDiv);
             });
