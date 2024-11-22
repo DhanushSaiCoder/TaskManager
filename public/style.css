@@ -1,138 +1,162 @@
 /* Global reset for padding and margins */
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 /* Body styling */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #161b22;
-    color: #e2e2e2;
-    display: flex;
-    align-items: flex-start; /* Align items to the top */
-    justify-content: center; /* Center horizontally */
-    height: 100vh;
-    overflow: auto; /* Allows scrolling if needed */
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #161b22;
+  color: #e2e2e2;
+  display: flex;
+  align-items: flex-start; /* Align items to the top */
+  justify-content: center; /* Center horizontally */
+  height: 100vh;
+  overflow: auto; /* Allows scrolling if needed */
 }
 
 /* Task form styling */
 #task-form {
-    margin-bottom: 20px;
-    display: inline-block;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
 /* Tasks container styling */
 #tasks {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap:wrap;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 /* Individual task styling */
 .task {
-    border: 1.5px solid #ccc;
-    padding: 10px 30px;
-    margin: 5px;
-    width: auto;
-    text-align: left;
-    border-radius: 10px;
-    border-color: rgb(255, 179, 179);
-    background-color: #513232;
-
+  border: 1.5px solid #ccc;
+  padding: 10px 30px;
+  margin: 5px;
+  width: auto;
+  text-align: left;
+  border-radius: 10px;
+  border-color: rgb(255, 179, 179);
+  background-color: #513232;
+  max-width: 300px;
+  word-wrap: break-word;
 }
 
+/* Completed task styling */
 #completed {
-    border-color: rgb(179, 255, 179);
-    background-color: #3f5132;
-
+  border-color: rgb(179, 255, 179);
+  background-color: #3f5132;
 }
 
 /* Popup styling */
 #popup {
-    background-color: white;
-    width: auto;
-    height: auto;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 40px 40px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding-top: 10px;
-    border-radius: 15px;
+  background-color: white;
+  width: auto;
+  height: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 15px;
 }
 
 /* Popup header and content styles */
 #popupHeader {
-    width: 100%;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-    padding: 10px 15px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
 }
 
 #popupContent {
-    padding: 10px 15px;
-    width: 100%;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    text-align: left;
+  padding: 10px 15px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
 }
 
+/* Close button for the popup */
 #popupCloseBtn {
-    background: transparent;
-    border: none;
-    padding: 10px 10px;
+  background: transparent;
+  border: none;
+  padding: 10px;
 }
 
 /* Task Form Section */
 #taskFormSection {
-    position: fixed; /* Keeps it fixed on the viewport */
-    top: 0; /* Aligns it at the top */
-    left: 0; /* Aligns it to the left */
-    width: 50vw; /* Takes up 50% of the viewport width */
-    height: 100vh; /* Occupies full height of the viewport */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for a raised look */
-    padding: 10px; /* Adds spacing inside */
-    z-index: 1000; /* Keeps it on top */
-    display: flex;
-    justify-content: center; /* Centers the form horizontally */
-    flex-direction: column;
-    overflow: hidden; /* Disables both vertical and horizontal scrolling */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  height: 100vh;
+  padding: 10%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  overflow: hidden;
+  border-right: 2px double rgba(208, 208, 208, 0.272);
+}
+#taskFormSection input,
+#taskFormSection button {
+  width: 100%;
+  height: auto;
+  padding: 10px 30px;
+  background: transparent;
+  border: 1.5px solid #e2e2e2;
+  background-color: #e2e2e241;
+  border-radius: 10px;
+  color: #e2e2e2;
+}
+#taskFormSection h1{
+    margin-bottom: 35px;
+}
+#taskFormSection button {
+  background-color: #e2e2e2;
+  border-color: #161b22;
+  color: #161b22;
+  font-weight: 600;
 }
 
-/* Tasks Section - Takes up the remaining space */
+#taskFormSection input::placeholder {
+  color: #e2e2e2;
+}
+
+/* Tasks Section */
 #tasksSection {
-    position: fixed; /* Keeps it fixed on the viewport */
-    top: 0; /* Aligns it at the top */
-    right: 0; /* Aligns it to the right */
-    width: 50vw; /* Takes up 50% of the viewport width */
-    height: 100vh; /* Occupies full height of the viewport */
-    padding: 10px; /* Adds spacing inside */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-y: scroll; /* Allows scrolling if task list overflows */
-}
-#taskFormSection{
-    border-right: 2px double rgba(208, 208, 208, 0.272);
-}
-
-#tasks{
-    width: 100%;
-
+  max-width: 50vw;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50vw;
+  height: 100vh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
 }
