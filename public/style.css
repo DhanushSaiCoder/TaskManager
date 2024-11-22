@@ -1,23 +1,65 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 20px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
 }
 
 #task-form {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 #tasks {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .task {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 5px;
-    width: 80%;
-    text-align: left;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 5px;
+  width: 80%;
+  text-align: left;
+}
+#popup {
+  background-color: white;
+  width: auto;
+  height: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px 40px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 10px;
+  border-radius: 15px;
+}
+#popupHeader {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 10px 15px;
+}
+#popupContent {
+  padding: 10px 15px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  text-align: left;
+}
+#popupCloseBtn {
+  background: transparent;
+  border:none;
+  padding: 10px 10px;
 }
