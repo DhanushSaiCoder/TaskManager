@@ -3,6 +3,9 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
 }
 
 /* Body styling */
@@ -108,7 +111,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 50vw;
+  width: 40vw; /* Set to 30vw */
   height: 100vh;
   padding: 10%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -121,6 +124,7 @@ body {
   overflow: hidden;
   border-right: 2px double rgba(208, 208, 208, 0.272);
 }
+
 #taskFormSection input,
 #taskFormSection button {
   width: 100%;
@@ -132,9 +136,11 @@ body {
   border-radius: 10px;
   color: #e2e2e2;
 }
-#taskFormSection h1{
-    margin-bottom: 35px;
+
+#taskFormSection h1 {
+  margin-bottom: 35px;
 }
+
 #taskFormSection button {
   background-color: #e2e2e2;
   border-color: #161b22;
@@ -148,15 +154,18 @@ body {
 
 /* Tasks Section */
 #tasksSection {
-  max-width: 50vw;
+  max-width: 70vw; /* Set to 70vw */
   position: fixed;
   top: 0;
   right: 0;
-  width: 50vw;
+  width: 60vw; /* Set to 70vw */
   height: 100vh;
   padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
+}
+#taskSection::-webkit-scrollbar {
+  display: none;
 }
