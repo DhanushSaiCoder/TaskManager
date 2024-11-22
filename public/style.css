@@ -14,13 +14,19 @@ body {
   align-items: center;
 }
 
+
 .task {
   border: 1px solid #ccc;
   padding: 10px;
   margin: 5px;
   width: 80%;
   text-align: left;
+background-color: rgb(255, 159, 159);
 }
+#completed{
+    background-color: rgb(179, 255, 179);
+}
+
 #popup {
   background-color: white;
   width: auto;

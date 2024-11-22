@@ -10,6 +10,7 @@ function fetchTasks() {
             tasksDiv.innerHTML = '';
             tasks.forEach(task => {
                 const taskDiv = document.createElement('div');
+                if(task.status){taskDiv.id ='completed'}
                 taskDiv.className = 'task';
                 taskDiv.innerHTML = `
                     <h3>${task.title}</h3>
@@ -116,6 +117,7 @@ function updateTask(id) {
             console.error('There was a problem with the fetch operation:', error);
         });
 }
+
 function saveTaskChanges(id, updatedTask) {
     fetch(`${baseURL}/${id}`, {
         method: 'PATCH', // HTTP method to update the task
@@ -138,7 +140,6 @@ function saveTaskChanges(id, updatedTask) {
         console.error('Error updating task:', error);
     });
 }
-
 
 function deleteTask(id) {
     fetch(`${baseURL}/${id}`, {
