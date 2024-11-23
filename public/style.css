@@ -15,25 +15,26 @@ body {
   background-color: #161b22;
   color: #e2e2e2;
   display: flex;
-  align-items: flex-start; /* Align items to the top */
-  justify-content: center; /* Center horizontally */
+  align-items: flex-start;
+  justify-content: center;
   height: 100vh;
-  overflow: auto; /* Allows scrolling if needed */
-
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none;
+  overflow: auto;
+  user-select: none; /* For all browsers */
 }
 
 /* Task form styling */
 #task-form {
-  height: 200px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
   margin-bottom: 20px;
+  width: 100%;
+  max-width: 600px;
+  height: 250px;
+}
+.taskInp{
+  max-width: 60%;
 }
 
 /* Tasks container styling */
@@ -54,15 +55,14 @@ body {
   border-radius: 10px;
   border-color: rgb(255, 179, 179);
   background-color: #513232;
-  max-width: 300px;
   word-wrap: break-word;
-  min-width: 140px;
   color: hsl(0, 100%, 90%);
+  overflow-wrap: anywhere;
 }
 
 /* Completed task styling */
 #completed {
-  opacity: 0.35;
+  opacity: 0.95735;
   border-color: rgb(179, 255, 179);
   background-color: #3f5132;
   color: #dfffc5;
@@ -86,14 +86,12 @@ body {
   justify-content: center;
   flex-direction: column;
   border-radius: 15px;
-  background-color: #e2e2e2;
   border: 1.5px solid #e2e2e2;
 }
 
 /* Popup header and content styles */
 #popupHeader {
   width: 100%;
-  height: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -103,7 +101,6 @@ body {
 #popupContent {
   padding: 10px 15px;
   width: 100%;
-  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,26 +118,21 @@ body {
 
 /* Task Form Section */
 #taskFormSection {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 40vw; /* Set to 30vw */
-  height: 100vh;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
   z-index: 1000;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  flex-wrap: wrap;
   flex-direction: column;
   overflow: hidden;
   border-right: 2px double rgba(208, 208, 208, 0.272);
+  height: 100%;
+  padding: 0 15px;
 }
 
 #taskFormSection input,
 #addBtn {
   width: 100%;
-  height: auto;
   padding: 10px 30px;
   background: transparent;
   border: 1.5px solid #e2e2e2;
@@ -148,10 +140,6 @@ body {
   border-radius: 10px;
   color: #e2e2e2;
 }
-
-/* #taskFormSection h1 {
-  margin-bottom: 35px;
-} */
 
 #addBtn {
   background-color: #e2e2e2;
@@ -166,17 +154,19 @@ body {
 
 /* Tasks Section */
 #tasksSection {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 60vw; /* Set to 70vw */
-  height: 100vh;
-  padding: 10px;
+  width: 100%;
+  z-index: 1000;
   display: flex;
-  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  overflow-y: scroll;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+  padding: 30px 15px;
+  border: none;
+  
 }
+
 #taskSection::-webkit-scrollbar {
   display: none;
 }
@@ -190,26 +180,24 @@ body {
   border: none;
   font-weight: 500;
 }
+
 .updateBtn {
   border-bottom: 1px solid #e2e2e252;
   border-top: 1px solid #e2e2e24d;
 }
+
 .h3,
 .p {
   margin: 10px 10px;
 }
-.h3 {
-  margin-bottom: 3px;
-}
+
 .description {
   margin: 10px 10px;
-
   color: #e2e2e28b;
 }
 
 #closeBtn {
   width: auto;
-  height: auto;
   padding: 10px 10px;
   background: transparent;
   border: none;
@@ -217,25 +205,27 @@ body {
   font-size: 19px;
   font-weight: 600;
 }
+
 #taskFormHeader {
   width: 100%;
-  height: auto;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
   padding: 20px;
 }
+
 #taskFormHeader h1 {
   width: 85%;
 }
 #newTaskBtnDiv {
   width: 100px;
   height: 100px;
-  position: fixed;
+  position: fixed; /* Ensure it's fixed on the page */
   bottom: 0;
-  left: 50;
+  left: 50; /* Or use left: 50px; if you meant pixels */
   background: transparent;
+  z-index: 10; /* Increased z-index */
 }
 #newTaskBtnDiv button {
   width: 40px;
@@ -250,24 +240,20 @@ body {
 #taskStatus {
   width: auto;
   padding: 10px 10px;
-  height: auto;
   border: 3px double #161b2225;
   border-radius: 5px;
 }
+
 #saveChanges {
-  width: auto;
-  height: auto;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   background-color: #161b22;
   color: #e2e2e2;
 }
+
 #logOut {
-  height: 35px;
-  width: auto;
   padding: 5px 10px;
-  text-wrap: nowrap;
   background: transparent;
   border: none;
   background-color: #e2e2e2;
@@ -275,7 +261,84 @@ body {
   color: #040600;
   font-weight: 750;
 }
-button:hover {
-  opacity: 0.7;
+
+/* Media queries and adjustments */
+@media (max-width: 900px) {
+  #taskFormSection {
+    width: 100vw;
+    height: 40vh;
+  }
+  /* #tasksSection {
+    width: 100vw;
+    height: auto; 
+  } */
+}
+
+body {
+  height: calc(auto + 100vw);
+  flex-wrap: wrap;
+  min-width: 300px;
+}
+
+#taskFormSection,
+#tasksSection {
+  max-width: 640px;
+  overflow-y: visible;
+}
+
+
+#taskFormSection {
+  height: 100vh;
+}
+
+#newTaskBtnDiv {
+  z-index: 9;
+}
+
+.task {
+  z-index: 1; /* Lower z-index to ensure it stays behind */
+}
+
+/* Ensure newTaskBtnDiv is properly layered */
+#newTaskBtnDiv {
+  width: 150px;
+  height: 100px;
+  position: fixed; /* Ensure it's fixed on the page */
+  bottom: 0;
+  right: 50px; /* Correctly position with pixels */
+  background: transparent;
+  z-index: 100; /* Significantly higher z-index */
+}
+
+/* Style for the button inside newTaskBtnDiv */
+#newTaskBtnDiv button {
+  width: auto;
+  height: auto;
+  border: none;
+  background-color: #e2e2e2;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  padding:10px 15px;
+  border-radius: 20px 5px 5px 20px;
+}
+/* Ensure task elements have a lower z-index */
+.task {
+  z-index: 1; /* Lower z-index to ensure it stays behind */
+}
+
+#newTaskBtnDiv button:hover{
+  opacity: 0.5;
   cursor: pointer;
+}
+button:hover{
+  opacity: 0.5;
+  cursor: pointer;
+}
+@media (max-width: 1200px) {
+  #taskFormSection {
+    border: none;
+    border-bottom: 1px solid gray;
+    height: auto;
+  }
 }

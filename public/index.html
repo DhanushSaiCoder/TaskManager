@@ -30,9 +30,9 @@
 
       <form id="task-form">
         <label for="title" style="opacity: 0.7">New Task:</label>
-        <input type="text" id="title" placeholder="Title" />
-        <input type="text" id="description" placeholder="Description" />
-        <button type="button" id="addBtn" onclick="createTask()">Add Task</button>
+        <input class="taskInp" type="text" id="title" placeholder="Title" />
+        <input class="taskInp" type="text" id="description" placeholder="Description" />
+        <button  class="taskInp" type="button" id="addBtn" onclick="createTask()">Add Task</button>
       </form>
     </div>
     <div id="tasksSection">
@@ -40,7 +40,7 @@
       <div id="tasks"></div>
     </div>
     <div id="newTaskBtnDiv">
-      <button id="newTaskBtn">+</button>
+      <button id="newTaskBtn">+New Task</button>
     </div>
     <script src="script.js"></script>
   </body>
