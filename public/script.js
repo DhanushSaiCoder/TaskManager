@@ -199,6 +199,9 @@ function saveTaskChanges(id, updatedTask) {
 }
 
 function deleteTask(id) {
+  if (!confirm('Are you sure?')) {
+    return;
+  }
     fetch(`${baseURL}/tasks/${id}`, {
         method: 'DELETE',
     })
