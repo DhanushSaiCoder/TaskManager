@@ -189,3 +189,8 @@ document.getElementById('title').addEventListener("keydown", function (event) {
         createTask(); // Call the function
     }
 });
+
+function logOut(){
+    localStorage.removeItem('token')
+    window.location.href = '/auth/login'
+}
