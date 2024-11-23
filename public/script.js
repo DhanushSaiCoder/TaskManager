@@ -217,6 +217,9 @@ document.getElementById('title').addEventListener("keydown", function (event) {
 });
 
 function logOut() {
+  if (!confirm('Are you sure?')) {
+  return;
+}
     localStorage.removeItem('token')
     window.location.href = '/auth/login'
 }
