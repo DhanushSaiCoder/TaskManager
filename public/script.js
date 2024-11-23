@@ -176,3 +176,11 @@ function deleteTask(id) {
     })
         .then(() => fetchTasks());
 }
+
+document.getElementById('title').addEventListener("keydown", function(event) {
+    // Check if the Enter key is pressed
+    if (event.key === "Enter") {
+      event.preventDefault(); // Prevent form submission (if inside a form)
+      createTask(); // Call the function
+    }
+  });
