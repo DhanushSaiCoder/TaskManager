@@ -46,15 +46,16 @@
         align-items: center;
         justify-content: space-evenly;
         flex-direction: column;
-        height: 50vh;
-        margin-top: 20px;
+        margin-top: 100px;
+
       }
       #loginForm {
         display: flex;
         align-items: center;
         justify-content: space-evenly;
         flex-direction: column;
-        height: 50vh;
+        height: calc(auto + 30px);
+        overflow: hidden;
       }
       #loginBtn {
         width: auto;
@@ -103,6 +104,17 @@
       </form>
     </div>
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("loginForm");
+
+        // Allow the form to naturally size itself
+        form.style.height = "auto";
+
+        // Get the computed height and add 30px
+        const computedHeight = form.clientHeight + 100;
+        form.style.height = `${computedHeight}px`;
+      });
+
       const url = "http://localhost:3000/auth/login";
       const form = document.getElementById("loginForm");
       form.onsubmit = (event) => {
