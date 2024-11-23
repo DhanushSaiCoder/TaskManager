@@ -33,7 +33,7 @@ body {
   max-width: 600px;
   height: 250px;
 }
-.taskInp{
+.taskInp {
   max-width: 60%;
 }
 
@@ -164,7 +164,6 @@ body {
   height: 100%;
   padding: 30px 15px;
   border: none;
-  
 }
 
 #taskSection::-webkit-scrollbar {
@@ -286,7 +285,6 @@ body {
   overflow-y: visible;
 }
 
-
 #taskFormSection {
   height: 100vh;
 }
@@ -319,7 +317,7 @@ body {
   border-radius: 20px;
   font-size: 20px;
   font-weight: 600;
-  padding:10px 15px;
+  padding: 10px 15px;
   border-radius: 20px 5px 5px 20px;
 }
 /* Ensure task elements have a lower z-index */
@@ -327,13 +325,16 @@ body {
   z-index: 1; /* Lower z-index to ensure it stays behind */
 }
 
-#newTaskBtnDiv button:hover{
+#newTaskBtnDiv button:hover {
   opacity: 0.5;
   cursor: pointer;
 }
-button:hover{
+button:hover {
   opacity: 0.5;
   cursor: pointer;
+}
+.hidden-button {
+  display: none;
 }
 @media (max-width: 1200px) {
   #taskFormSection {
