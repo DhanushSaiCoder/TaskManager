@@ -24,6 +24,11 @@
         flex-direction: column;
         background-color: #161b22;
         color: #e2e2e2;
+
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none;
       }
       .inp {
         padding: 10px 30px;
@@ -65,7 +70,8 @@
       #link {
         color: #6363ff;
       }
-      button:hover,a:hover{
+      button:hover,
+      a:hover {
         opacity: 0.7;
         cursor: pointer;
       }
