@@ -1,45 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Task Manager - Signup</title>
-</head>
-<body>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #161b22;
+        color: #e2e2e2;
+      }
+      .inp {
+        padding: 10px 30px;
+        background: transparent;
+        border: 1.5px solid #e2e2e2;
+        background-color: #e2e2e241;
+        border-radius: 10px;
+        color: #e2e2e2;
+
+      }
+      .inp::placeholder{
+        color: #e2e2e2;
+      }
+      #formDiv {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+        height: 50vh;
+        margin-top: 20px;
+      }
+      #signupForm{
+        display: flex;align-items: center;justify-content: space-evenly;flex-direction: column;
+      }
+      #signUpBtn{
+        width:auto;
+        padding: 10px 30px;
+        background: transparent;
+        border: 1.5px solid #e2e2e2;
+        background-color: #ffffff;
+        border-radius: 10px;
+        color: #000000;
+        font-weight: 750;
+        margin-top: 30px;
+      }
+      #link{
+        color: #6363ff;
+      }
+    </style>
+  </head>
+  <body>
     <h1>Sign Up</h1>
-    <form id="signupForm">
-        <input type="text" id="username"  placeholder="Username">
-        <input type="email" id="email" placeholder="Email">
-        <input type="password"  id="password"  placeholder="Password">
-        <button type="submit">Sign Up</button>
-    </form>
-    <a href="/auth/login">Log in</a>
+    <div id="formDiv">
+      <form id="signupForm">
+        <input
+          class="inp"
+          type="text"
+          id="username"
+          placeholder="Username"
+        /><br />
+        <input class="inp" type="email" id="email" placeholder="Email" /><br />
+        <input
+          class="inp"
+          type="password"
+          id="password"
+          placeholder="Password"
+        /><br />
+        <div>Already have an account?  <a id="link" href="/auth/login">Log in</a></div>
+        <button id="signUpBtn" type="submit">Sign Up</button>
+      </form>
+      
+    </div>
     <script>
-        const url = "http://localhost:3000/auth/signup";
-        const form = document.getElementById('signupForm');
+      const url = "http://localhost:3000/auth/signup";
+      const form = document.getElementById("signupForm");
 
-        form.onsubmit = (event) => {
-            event.preventDefault();
+      form.onsubmit = (event) => {
+        event.preventDefault();
 
-            var username = document.getElementById('username').value;
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
+        var username = document.getElementById("username").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
 
-            fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    username,
-                    email,
-                    password
-                })
-            })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error('Can\'t post user', error));
-        }
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            email,
+            password,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.error("Can't post user", error));
+      };
     </script>
-</body>
+  </body>
 </html>
