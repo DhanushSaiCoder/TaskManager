@@ -40,7 +40,7 @@ document.getElementById('newTaskBtn').onclick = () => {
 async function fetchTasks() {
     const token = localStorage.getItem('token');
     try {
-        const response = await fetch(baseURL, {
+        const response = await fetch(`${baseURL}/tasks`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
