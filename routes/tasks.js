@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const { Task, validate } = require('../models/Task')
 const authenticateToken = require('../middlewares/authenticateToken')
 const router = express.Router()
+
 router.get('/', authenticateToken, async (req, res) => {
     try {
         const tasks = await Task.find({user: req.user.userId})

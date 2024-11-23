@@ -100,7 +100,7 @@ function createTask() {
 }
 
 function updateTask(id) {
-    fetch(`${baseURL}/${id}`, {
+    fetch(`${baseURL}/tasks/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -176,7 +176,7 @@ function updateTask(id) {
 }
 
 function saveTaskChanges(id, updatedTask) {
-    fetch(`${baseURL}/${id}`, {
+    fetch(`${baseURL}/tasks/${id}`, {
         method: 'PATCH', // HTTP method to update the task
         headers: {
             'Content-Type': 'application/json', // Specify JSON format
@@ -199,7 +199,7 @@ function saveTaskChanges(id, updatedTask) {
 }
 
 function deleteTask(id) {
-    fetch(`${baseURL}/${id}`, {
+    fetch(`${baseURL}/tasks/${id}`, {
         method: 'DELETE',
     })
         .then(() => fetchTasks());
