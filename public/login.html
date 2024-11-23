@@ -1,178 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Task Manager - Login</title>
     <script>
-      if (localStorage.getItem("token")) {
-        window.location.href = "/";
-      }
-    </script>
-    <style>
-      * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-      }
-      body {
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background-color: #161b22;
-        color: #e2e2e2;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-      .inp {
-        padding: 10px 30px;
-        background: transparent;
-        border: 1.5px solid #e2e2e2;
-        background-color: #e2e2e241;
-        border-radius: 10px;
-        color: #e2e2e2;
-      }
-      .inp::placeholder {
-        color: #e2e2e2;
-      }
-      #formDiv {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        flex-direction: column;
-        margin-top: 100px;
-      }
-      #loginForm {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        flex-direction: column;
-        height: calc(auto + 30px);
-        overflow: hidden;
-      }
-      #loginBtn {
-        width: auto;
-        padding: 10px 30px;
-        background: transparent;
-        border: 1.5px solid #e2e2e2;
-        background-color: #e2e2e2;
-        border-radius: 10px;
-        color: #040600;
-        font-weight: 750;
-        margin-top: 20px;
-      }
-      #link {
-        color: #6363ff;
-      }
-      #error-message {
-        color: red;
-        margin-top: 10px;
-        display: none; /* Hidden by default */
-      }
-      button:hover,
-      a:hover {
-        opacity: 0.7;
-        cursor: pointer;
-      }
-      #error-message {
-        margin-top: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Log in</h1>
-    <div id="formDiv">
-      <form id="loginForm">
-        <input
-          class="inp"
-          type="email"
-          id="email"
-          placeholder="Email"
-          required
-        />
-        <input
-          class="inp"
-          type="password"
-          id="password"
-          placeholder="Password"
-          required
-        />
-        <div>
-          Don't have an account? <a id="link" href="/auth/signup">Sign Up</a>
-        </div>
-        <div id="error-message"></div>
-        <!-- Error message element -->
-
-        <button id="loginBtn" type="submit">Log in</button>
-      </form>
-    </div>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById("loginForm");
-
-        // Allow the form to naturally size itself
-        form.style.height = "auto";
-
-        // Get the computed height and add 30px
-        const computedHeight = form.clientHeight + 100;
-        form.style.height = `${computedHeight}px`;
-      });
-      window.process = { env: { NODE_ENV: 'production' } };
-
-
-      const baseURL =
-        process.env.NODE_ENV === "production"
-          ? "https://your-deployed-url.com"
-          : "http://localhost:3000";
-      const url = `${baseURL}/auth/signup`;
-      const form = document.getElementById("loginForm");
-      const errorMessage = document.getElementById("error-message");
-
-      form.onsubmit = (event) => {
-        event.preventDefault();
-
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value.trim();
-
-        errorMessage.style.display = "none"; // Hide error message by default
-
-        // Basic validation
-        if (!email || !password) {
-          errorMessage.textContent = "Please enter both email and password.";
-          errorMessage.style.display = "block";
-          return;
+        if (localStorage.getItem("token")) {
+            window.location.href = "/";
         }
 
-        fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.token) {
-              localStorage.setItem("token", data.token);
-              console.log("Login successful", data);
-              window.location.href = "/";
-            } else {
-              errorMessage.textContent =
-                "Invalid credentials, please try again.";
-              errorMessage.style.display = "block";
-            }
-          })
-          .catch((error) => {
-            console.error("Can't post user", error);
-            errorMessage.textContent = "An error occurred, please try again.";
-            errorMessage.style.display = "block";
-          });
-      };
+        // Define process.env.NODE_ENV for the browser environment
+        window.process = { env: { NODE_ENV: 'production' } };
     </script>
-  </body>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #161b22;
+            color: #e2e2e2;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .inp {
+            padding: 10px 30px;
+            background: transparent;
+            border: 1.5px solid #e2e2e2;
+            background-color: #e2e2e241;
+            border-radius: 10px;
+            color: #e2e2e2;
+        }
+        .inp::placeholder {
+            color: #e2e2e2;
+        }
+        #formDiv {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-direction: column;
+            margin-top: 100px;
+        }
+        #loginForm {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-direction: column;
+            height: calc(auto + 30px);
+            overflow: hidden;
+        }
+        #loginBtn {
+            width: auto;
+            padding: 10px 30px;
+            background: transparent;
+            border: 1.5px solid #e2e2e2;
+            background-color: #e2e2e2;
+            border-radius: 10px;
+            color: #040600;
+            font-weight: 750;
+            margin-top: 20px;
+        }
+        #link {
+            color: #6363ff;
+        }
+        #error-message {
+            color: red;
+            margin-top: 10px;
+            display: none; /* Hidden by default */
+        }
+        button:hover,
+        a:hover {
+            opacity: 0.7;
+            cursor: pointer;
+        }
+        #error-message {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Log in</h1>
+    <div id="formDiv">
+        <form id="loginForm">
+            <input class="inp" type="email" id="email" placeholder="Email" required />
+            <input class="inp" type="password" id="password" placeholder="Password" required />
+            <div>
+                Don't have an account? <a id="link" href="/auth/signup">Sign Up</a>
+            </div>
+            <div id="error-message"></div> <!-- Error message element -->
+            <button id="loginBtn" type="submit">Log in</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("loginForm");
+
+            // Allow the form to naturally size itself
+            form.style.height = "auto";
+
+            // Get the computed height and add 30px
+            const computedHeight = form.clientHeight + 100;
+            form.style.height = `${computedHeight}px`;
+        });
+
+        const baseURL = window.process.env.NODE_ENV === "production"
+            ? "https://your-deployed-url.com"
+            : "http://localhost:3000";
+        const url = `${baseURL}/auth/login`; // Corrected endpoint for login
+        const form = document.getElementById("loginForm");
+        const errorMessage = document.getElementById("error-message");
+
+        form.onsubmit = (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            errorMessage.style.display = "none"; // Hide error message by default
+
+            // Basic validation
+            if (!email || !password) {
+                errorMessage.textContent = "Please enter both email and password.";
+                errorMessage.style.display = "block";
+                return;
+            }
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.token) {
+                        localStorage.setItem("token", data.token);
+                        console.log("Login successful", data);
+                        window.location.href = "/";
+                    } else {
+                        errorMessage.textContent = "Invalid credentials, please try again.";
+                        errorMessage.style.display = "block";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Can't post user", error);
+                    errorMessage.textContent = "An error occurred, please try again.";
+                    errorMessage.style.display = "block";
+                });
+        };
+    </script>
+</body>
 </html>
