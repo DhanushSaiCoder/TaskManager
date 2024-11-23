@@ -19,10 +19,9 @@
         flex-direction: column;
         background-color: #161b22;
         color: #e2e2e2;
-
-        -webkit-user-select: none; /* Safari */
-        -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
         user-select: none;
       }
       .inp {
@@ -59,15 +58,23 @@
         border-radius: 10px;
         color: #000000;
         font-weight: 750;
-        margin-top: 30px;
+        margin-top: 20px;
       }
       #link {
         color: #6363ff;
+      }
+      #error-message {
+        color: red;
+        margin-top: 10px;
+        display: none; /* Hidden by default */
       }
       button:hover,
       a:hover {
         opacity: 0.7;
         cursor: pointer;
+      }
+      #error-message{
+        margin-top: 30px;
       }
     </style>
   </head>
@@ -80,30 +87,53 @@
           type="text"
           id="username"
           placeholder="Username"
+          required
         /><br />
-        <input class="inp" type="email" id="email" placeholder="Email" /><br />
+        <input class="inp" type="email" id="email" placeholder="Email" required /><br />
         <input
           class="inp"
           type="password"
           id="password"
           placeholder="Password"
+          required
         /><br />
         <div>
           Already have an account? <a id="link" href="/auth/login">Log in</a>
-        </div>
+        <div id="error-message"></div> <!-- Error message element -->
+      </div>
         <button id="signUpBtn" type="submit">Sign Up</button>
       </form>
     </div>
     <script>
       const url = "http://localhost:3000/auth/signup";
       const form = document.getElementById("signupForm");
+      const errorMessage = document.getElementById("error-message");
 
       form.onsubmit = (event) => {
         event.preventDefault();
 
-        var username = document.getElementById("username").value;
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
+        const username = document.getElementById("username").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        errorMessage.style.display = 'none'; // Hide error message by default
+
+        // Simple validation
+        if (!username) {
+          errorMessage.textContent = "Please enter a valid username.";
+          errorMessage.style.display = 'block';
+          return;
+        }
+        if (!email || !validateEmail(email)) {
+          errorMessage.textContent = "Please enter a valid email address.";
+          errorMessage.style.display = 'block';
+          return;
+        }
+        if (!password || password.length < 6) {
+          errorMessage.textContent = "Password must be at least 6 characters long.";
+          errorMessage.style.display = 'block';
+          return;
+        }
 
         fetch(url, {
           method: "POST",
@@ -117,11 +147,21 @@
               console.log("Sign-up and login successful", data);
               window.location.href = "/"; // Redirect to homepage
             } else {
-              alert("Sign-up failed, please try again.");
+              errorMessage.textContent = "Sign-up failed, please try again.";
+              errorMessage.style.display = 'block';
             }
           })
-          .catch((error) => console.error("Can't post user", error));
+          .catch((error) => {
+            console.error("Can't post user", error);
+            errorMessage.textContent = "An error occurred, please try again.";
+            errorMessage.style.display = 'block';
+          });
       };
+
+      function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+      }
     </script>
   </body>
 </html>

@@ -24,10 +24,9 @@
         flex-direction: column;
         background-color: #161b22;
         color: #e2e2e2;
-
-        -webkit-user-select: none; /* Safari */
-        -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
         user-select: none;
       }
       .inp {
@@ -47,7 +46,6 @@
         justify-content: space-evenly;
         flex-direction: column;
         margin-top: 100px;
-
       }
       #loginForm {
         display: flex;
@@ -66,15 +64,23 @@
         border-radius: 10px;
         color: #040600;
         font-weight: 750;
-        margin-top: 10px;
+        margin-top: 20px;
       }
       #link {
         color: #6363ff;
+      }
+      #error-message {
+        color: red;
+        margin-top: 10px;
+        display: none; /* Hidden by default */
       }
       button:hover,
       a:hover {
         opacity: 0.7;
         cursor: pointer;
+      }
+      #error-message{
+        margin-top: 20px;
       }
     </style>
   </head>
@@ -99,6 +105,7 @@
         <div>
           Don't have an account? <a id="link" href="/auth/signup">Sign Up</a>
         </div>
+        <div id="error-message"></div> <!-- Error message element -->
 
         <button id="loginBtn" type="submit">Log in</button>
       </form>
@@ -117,15 +124,20 @@
 
       const url = "http://localhost:3000/auth/login";
       const form = document.getElementById("loginForm");
+      const errorMessage = document.getElementById("error-message");
+
       form.onsubmit = (event) => {
         event.preventDefault();
 
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        errorMessage.style.display = 'none'; // Hide error message by default
 
         // Basic validation
         if (!email || !password) {
-          alert("Please enter both email and password.");
+          errorMessage.textContent = "Please enter both email and password.";
+          errorMessage.style.display = 'block';
           return;
         }
 
@@ -134,10 +146,7 @@
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            email,
-            password,
-          }),
+          body: JSON.stringify({ email, password }),
         })
           .then((response) => response.json())
           .then((data) => {
@@ -146,10 +155,15 @@
               console.log("Login successful", data);
               window.location.href = "/";
             } else {
-              alert("Invalid credentials, please try again.");
+              errorMessage.textContent = "Invalid credentials, please try again.";
+              errorMessage.style.display = 'block';
             }
           })
-          .catch((error) => console.error("Can't post user", error));
+          .catch((error) => {
+            console.error("Can't post user", error);
+            errorMessage.textContent = "An error occurred, please try again.";
+            errorMessage.style.display = 'block';
+          });
       };
     </script>
   </body>
