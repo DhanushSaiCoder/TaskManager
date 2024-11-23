@@ -180,6 +180,7 @@ body {
   background: #e2e2e22f;
   color: #e2e2e2;
   border: none;
+  font-weight: 500;
 }
 .updateBtn {
   border-bottom: 1px solid #e2e2e252;
@@ -193,8 +194,11 @@ body {
   margin-bottom: 3px;
 }
 .description {
-  opacity: 0.4;
+  margin: 10px 10px;
+
+  color: #e2e2e28b;
 }
+
 #closeBtn {
   width: auto;
   height: auto;
@@ -210,32 +214,44 @@ body {
   height: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   margin-bottom: 100px;
   padding: 20px;
 }
-
-#newTaskBtnDiv{
+#taskFormHeader h1 {
+  width: 85%;
+}
+#newTaskBtnDiv {
   width: 100px;
   height: 100px;
   position: fixed;
   bottom: 0;
   left: 50;
-  background:transparent;
+  background: transparent;
 }
-#newTaskBtnDiv button{
-  width:40px ;
-  height:40px;
-  border:none;
+#newTaskBtnDiv button {
+  width: 40px;
+  height: 40px;
+  border: none;
   background-color: #e2e2e2;
   border-radius: 20px;
-  font-size:20px;
+  font-size: 20px;
   font-weight: 600;
 }
-.popupInp,#taskStatus{
+.popupInp,
+#taskStatus {
   width: auto;
-  padding:10px 10px;
-  height:auto;
-  border:none;
+  padding: 10px 10px;
+  height: auto;
+  border: 3px double #161b225e;
   border-radius: 5px;
+}
+#saveChanges {
+  width: auto;
+  height: auto;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #161b22;
+  color: #e2e2e2;
 }

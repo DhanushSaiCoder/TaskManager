@@ -43,10 +43,11 @@ function fetchTasks() {
                 taskDiv.className = 'task';
                 taskDiv.innerHTML = `
                     <h3 class="h3">${task.title}</h3>
-                    <p class="p" class="description">${task.description}</p>
+                    <p class="description">${task.description}</p>
                     <button class="updateBtn" onclick="updateTask('${task._id}')">Update</button>
                     <button class="deleteBtn" onclick="deleteTask('${task._id}')">Delete</button>
                 `;
+                // document.getElementById('')
                 tasksDiv.appendChild(taskDiv);
             });
         });
