@@ -4,7 +4,7 @@ const URL =
     process.env.NODE_ENV === "production"
         ? "https://taskmanager-production-c770.up.railway.app"
         : "http://localhost:3000";
-const baseURL = `${URL}/auth/signup`;
+const baseURL = `${URL}`;
 
 document.addEventListener('DOMContentLoaded', fetchTasks);
 
