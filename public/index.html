@@ -5,24 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Task Manager</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="taskFormSection">
-      <h1>Task Manager</h1>
- 
-      <div id="task-form">
-        <h4 style="opacity: 0.7;">New Task: </h4>
+      <div id="taskFormHeader">
+        <h1>Task Manager</h1>
+        <button class="closeBtn" id="closeBtn">X</button>
+      </div>
+
+      <form id="task-form">
+        <label for="title" style="opacity: 0.7">New Task:</label>
         <input type="text" id="title" placeholder="Title" />
         <input type="text" id="description" placeholder="Description" />
-        <button onclick="createTask()">Add Task</button>
-      </div>
+        <button type="button" id="addBtn">Add Task</button>
+      </form>
     </div>
     <div id="tasksSection">
-      <h2 style="opacity: 0.7;">Tasks: </h2>
+      <h2 style="opacity: 0.7">Tasks:</h2>
       <div id="tasks"></div>
+    </div>
+    <div id="newTaskBtnDiv">
+      <button id="newTaskBtn">+</button>
     </div>
     <script src="script.js"></script>
   </body>

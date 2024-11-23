@@ -2,6 +2,35 @@ const baseURL = 'http://localhost:3000/tasks';
 
 document.addEventListener('DOMContentLoaded', fetchTasks);
 
+document.getElementById('newTaskBtn').style.display = "none"
+
+document.getElementById('closeBtn').onclick = () => {
+    const taskFormSection = document.getElementById("taskFormSection")
+    const tasksSection = document.getElementById('tasksSection')
+    document.getElementById('newTaskBtn').style.display = "block"
+
+    taskFormSection.style.display = 'none';
+    tasksSection.style.width = "100vw";
+}
+document.getElementById('newTaskBtn').onclick = () => {
+    const taskFormSection = document.getElementById("taskFormSection")
+    const tasksSection = document.getElementById('tasksSection')
+    document.getElementById('newTaskBtn').style.display = "none"
+
+    taskFormSection.style.display = 'flex';
+    tasksSection.style.position = "fixed";
+    tasksSection.style.top = "0";
+    tasksSection.style.right = "0";
+    tasksSection.style.width = "60vw"; // Adjust to 70vw if needed
+    tasksSection.style.height = "100vh";
+    tasksSection.style.padding = "10px";
+    tasksSection.style.display = "flex";
+    tasksSection.style.flexDirection = "column";
+    tasksSection.style.alignItems = "center";
+    tasksSection.style.overflowY = "scroll";
+
+}
+
 function fetchTasks() {
     fetch(baseURL)
         .then(response => response.json())
@@ -10,7 +39,7 @@ function fetchTasks() {
             tasksDiv.innerHTML = '';
             tasks.forEach(task => {
                 const taskDiv = document.createElement('div');
-                if(task.status){taskDiv.id ='completed'}
+                if (task.status) { taskDiv.id = 'completed' }
                 taskDiv.className = 'task';
                 taskDiv.innerHTML = `
                     <h3 class="h3">${task.title}</h3>
@@ -26,7 +55,7 @@ function fetchTasks() {
 function createTask() {
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value || 'No description.';
-    
+
     fetch(baseURL, {
         method: 'POST',
         headers: {
@@ -65,7 +94,7 @@ function updateTask(id) {
             const popup = document.createElement('div');
             popup.id = 'popup';
             popup.className = 'popup';
-            
+
 
             popup.innerHTML = `
                 <div id="popupHeader">
@@ -126,19 +155,19 @@ function saveTaskChanges(id, updatedTask) {
         },
         body: JSON.stringify(updatedTask), // Convert the updated task object to a JSON string
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to update the task');
-        }
-        return response.json(); // Parse the response JSON
-    })
-    .then(data => {
-        console.log('Task updated successfully:', data);
-        fetchTasks(); // Refresh the task list to reflect the changes
-    })
-    .catch(error => {
-        console.error('Error updating task:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to update the task');
+            }
+            return response.json(); // Parse the response JSON
+        })
+        .then(data => {
+            console.log('Task updated successfully:', data);
+            fetchTasks(); // Refresh the task list to reflect the changes
+        })
+        .catch(error => {
+            console.error('Error updating task:', error);
+        });
 }
 
 function deleteTask(id) {
