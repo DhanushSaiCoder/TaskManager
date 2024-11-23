@@ -62,7 +62,8 @@ body {
 
 /* Popup styling */
 #popup {
-  background-color: white;
+  background-color: #e2e2e2;
+  color: #161b22;
   width: auto;
   height: auto;
   position: fixed;
@@ -77,6 +78,8 @@ body {
   justify-content: center;
   flex-direction: column;
   border-radius: 15px;
+  background-color: #e2e2e2f3;
+  border: 1.5px solid #e2e2e2;
 }
 
 /* Popup header and content styles */
@@ -104,6 +107,8 @@ body {
   background: transparent;
   border: none;
   padding: 10px;
+  font-size: 19px;
+  font-weight: 650;
 }
 
 /* Task Form Section */
@@ -226,4 +231,11 @@ body {
   border-radius: 20px;
   font-size:20px;
   font-weight: 600;
+}
+.popupInp{
+  width: auto;
+  padding:10px 10px;
+  height:30px;
+  border:none;
+  
 }

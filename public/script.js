@@ -105,10 +105,10 @@ function updateTask(id) {
                 <div id="popupContent">
                     <div>
                     <label for="taskTitle"><strong>Title:</strong></label>
-                    <input type="text" id="taskTitle" value="${task.title}" /><br><br>
+                    <input class="popupInp" type="text" id="taskTitle" value="${task.title}" /><br><br>
                     
                     <label for="taskDescription"><strong>Description:</strong></label>
-                    <input type="text" id="taskDescription" value="${task.description}" /><br><br>
+                    <input class="popupInp" type="text" id="taskDescription" value="${task.description}" /><br><br>
                     
                     <label for="taskStatus"><strong>Status:</strong></label>
                     <select id="taskStatus">
