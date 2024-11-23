@@ -13,17 +13,7 @@
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
       rel="stylesheet"
     />
-    <script>
-      if (!localStorage.getItem("token")) {
-        window.location.href = "/auth/login";
-      }
-      const button = document.getElementById("closeBtn");
-      if (window.innerWidth < 768) {
-        button.classList.add("hidden-button");
-      } else {
-        button.classList.remove("hidden-button");
-      }
-    </script>
+    
   </head>
   <body>
     <div id="taskFormSection">
@@ -59,6 +49,17 @@
     <div id="newTaskBtnDiv">
       <button id="newTaskBtn">+New Task</button>
     </div>
+    <script>
+      if (!localStorage.getItem("token")) {
+        window.location.href = "/auth/login";
+      }
+      const button = document.getElementById("closeBtn");
+      if (window.innerWidth < 768) {
+        button.classList.add("hidden-button");
+      } else {
+        button.classList.remove("hidden-button");
+      }
+    </script>
     <script src="script.js"></script>
   </body>
 </html>
