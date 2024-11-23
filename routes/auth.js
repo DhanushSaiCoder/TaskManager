@@ -2,12 +2,20 @@ const express = require("express");
 const bcrypt = require("bcrypt"); // Import bcrypt for hashing and comparing passwords
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-
+const path = require('path');
 const router = express.Router();
+
+router.get('/signup', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/signup.html'))
+})
+
+router.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/login.html'))
+})
 
 // Signup Route - Hash the password before saving
 router.post("/signup", async (req, res) => {
-  const {username, email, password } = req.body;
+  const { username, email, password } = req.body;
 
   try {
     const existingUser = await User.findOne({ email });
@@ -15,20 +23,19 @@ router.post("/signup", async (req, res) => {
       return res.status(400).json({ error: "User already exists" });
     }
 
-    // Hash the password before saving the user
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = new User({ username,email, password: hashedPassword });
+    const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
 
     res.status(201).json({ message: "User created successfully" });
   } catch (err) {
-    
+
     res.status(500).send(err.message);
   }
 });
 
-// Login Route - Compare the entered password with the hashed password
+// Login Route - Compare the entered password with the hashed 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -45,13 +52,15 @@ router.post("/login", async (req, res) => {
     }
 
     // Generate JWT token if credentials are correct
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
+    // Send the token to the client to store in localStorage
     res.json({ message: "Login successful", token });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Server error" });
   }
 });
+
 
 module.exports = router;

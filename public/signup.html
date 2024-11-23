@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager - Signup</title>
+</head>
+<body>
+    <h1>Sign Up</h1>
+    <form id="signupForm">
+        <input type="text" id="username"  placeholder="Username">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password"  id="password"  placeholder="Password">
+        <button type="submit">Sign Up</button>
+    </form>
+    <a href="/auth/login">Log in</a>
+    <script>
+        const url = "http://localhost:3000/auth/signup";
+        const form = document.getElementById('signupForm');
+
+        form.onsubmit = (event) => {
+            event.preventDefault();
+
+            var username = document.getElementById('username').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username,
+                    email,
+                    password
+                })
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Can\'t post user', error));
+        }
+    </script>
+</body>
+</html>

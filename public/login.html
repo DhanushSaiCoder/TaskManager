@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager - Login</title>
+    <script>
+        if(localStorage.getItem('token')){
+            window.location.href = '/'
+        }
+    </script>
+</head>
+<body>
+    <h1>Log in</h1>
+    <form id="loginForm">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button type="submit">Log in</button>
+    </form>
+    <a href="/auth/signup">Sign Up</a>
+    <script>
+        const url = "http://localhost:3000/auth/login";
+        const form = document.getElementById('loginForm');
+
+        form.onsubmit = (event) => {
+            event.preventDefault();
+
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                localStorage.setItem('token', data.token);
+                console.log('Login successful', data);
+                window.location.href = '/'
+            })
+            .catch(error => console.error('Can\'t post user', error));
+        }
+    </script>
+</body>
+</html>
