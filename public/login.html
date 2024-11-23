@@ -122,6 +122,8 @@
         const computedHeight = form.clientHeight + 100;
         form.style.height = `${computedHeight}px`;
       });
+      window.process = { env: { NODE_ENV: 'production' } };
+
 
       const baseURL =
         process.env.NODE_ENV === "production"

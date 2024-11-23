@@ -1,3 +1,5 @@
+window.process = { env: { NODE_ENV: 'production' } };
+
 const URL =
     process.env.NODE_ENV === "production"
         ? "https://your-deployed-url.com"
