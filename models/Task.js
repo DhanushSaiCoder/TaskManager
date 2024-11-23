@@ -10,7 +10,7 @@ const TaskSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: true,
+        
     },
     status: {
         type: Boolean,
@@ -25,7 +25,7 @@ const TaskSchema = new mongoose.Schema({
 function validateTask(task) {
     const schema = Joi.object({
         title: Joi.string().min(3).max(255).required(),
-        description: Joi.string().min(3).max(255).required(),
+        description: Joi.string().min(3).max(255).default('No description.'),
         status: Joi.boolean().required(),
         createdAt: Joi.date().default(Date.now)
     });

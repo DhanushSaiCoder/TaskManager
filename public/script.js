@@ -25,8 +25,8 @@ function fetchTasks() {
 
 function createTask() {
     const title = document.getElementById('title').value;
-    const description = document.getElementById('description').value;
-
+    const description = document.getElementById('description').value || 'No description.';
+    
     fetch(baseURL, {
         method: 'POST',
         headers: {
