@@ -62,8 +62,12 @@
         font-weight: 750;
         margin-top: 10px;
       }
-      #link{
+      #link {
         color: #6363ff;
+      }
+      button:hover,a:hover{
+        opacity: 0.7;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -85,8 +89,9 @@
           placeholder="Password"
           required
         />
-        <div>Don't have an account?  <a id="link" href="/auth/signup">Sign Up</a></div>
-
+        <div>
+          Don't have an account? <a id="link" href="/auth/signup">Sign Up</a>
+        </div>
 
         <button id="loginBtn" type="submit">Log in</button>
       </form>

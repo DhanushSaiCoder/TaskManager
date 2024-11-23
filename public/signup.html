@@ -59,6 +59,10 @@
       #link {
         color: #6363ff;
       }
+      button:hover,a:hover {
+        opacity: 0.7;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -109,7 +113,7 @@
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
-            window.location.href ='/auth/login'
+            window.location.href = "/auth/login";
           })
           .catch((error) => console.error("Can't post user", error));
       };
