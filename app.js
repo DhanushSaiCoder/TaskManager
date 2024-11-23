@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'))
 app.use("/auth", require("./routes/auth"));
 
+//mongodb+srv://<db_username>:<db_password>@taskmanager.8zpj4.mongodb.net/?retryWrites=true&w=majority&appName=TaskManager
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => { console.log('Connected to DB') })

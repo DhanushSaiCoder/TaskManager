@@ -1,4 +1,8 @@
-const baseURL = 'http://localhost:3000/tasks';
+const URL =
+    process.env.NODE_ENV === "production"
+        ? "https://your-deployed-url.com"
+        : "http://localhost:3000";
+const baseURL = `${URL}/auth/signup`;
 
 document.addEventListener('DOMContentLoaded', fetchTasks);
 
@@ -50,7 +54,7 @@ async function fetchTasks() {
         const tasks = await response.json();
         const tasksDiv = document.getElementById('tasks');
         tasksDiv.innerHTML = '';
-        
+
         tasks.forEach(task => {
             const taskDiv = document.createElement('div');
             if (task.status) { taskDiv.id = 'completed'; }
@@ -207,7 +211,7 @@ document.getElementById('title').addEventListener("keydown", function (event) {
     }
 });
 
-function logOut(){
+function logOut() {
     localStorage.removeItem('token')
     window.location.href = '/auth/login'
 }

@@ -79,7 +79,7 @@
         opacity: 0.7;
         cursor: pointer;
       }
-      #error-message{
+      #error-message {
         margin-top: 20px;
       }
     </style>
@@ -105,7 +105,8 @@
         <div>
           Don't have an account? <a id="link" href="/auth/signup">Sign Up</a>
         </div>
-        <div id="error-message"></div> <!-- Error message element -->
+        <div id="error-message"></div>
+        <!-- Error message element -->
 
         <button id="loginBtn" type="submit">Log in</button>
       </form>
@@ -122,7 +123,11 @@
         form.style.height = `${computedHeight}px`;
       });
 
-      const url = "http://localhost:3000/auth/login";
+      const baseURL =
+        process.env.NODE_ENV === "production"
+          ? "https://your-deployed-url.com"
+          : "http://localhost:3000";
+      const url = `${baseURL}/auth/signup`;
       const form = document.getElementById("loginForm");
       const errorMessage = document.getElementById("error-message");
 
@@ -132,12 +137,12 @@
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value.trim();
 
-        errorMessage.style.display = 'none'; // Hide error message by default
+        errorMessage.style.display = "none"; // Hide error message by default
 
         // Basic validation
         if (!email || !password) {
           errorMessage.textContent = "Please enter both email and password.";
-          errorMessage.style.display = 'block';
+          errorMessage.style.display = "block";
           return;
         }
 
@@ -155,14 +160,15 @@
               console.log("Login successful", data);
               window.location.href = "/";
             } else {
-              errorMessage.textContent = "Invalid credentials, please try again.";
-              errorMessage.style.display = 'block';
+              errorMessage.textContent =
+                "Invalid credentials, please try again.";
+              errorMessage.style.display = "block";
             }
           })
           .catch((error) => {
             console.error("Can't post user", error);
             errorMessage.textContent = "An error occurred, please try again.";
-            errorMessage.style.display = 'block';
+            errorMessage.style.display = "block";
           });
       };
     </script>
