@@ -52,12 +52,14 @@ body {
   max-width: 300px;
   word-wrap: break-word;
   min-width: 140px;
+  color: hsl(0, 100%, 90%);
 }
 
 /* Completed task styling */
 #completed {
   border-color: rgb(179, 255, 179);
   background-color: #3f5132;
+  color: #dfffc5;
 }
 
 /* Popup styling */
