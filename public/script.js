@@ -82,7 +82,7 @@ function createTask() {
     const description = document.getElementById('description').value || 'No description.';
     const token = localStorage.getItem('token'); // Retrieve the token from localStorage
 
-    fetch(baseURL, {
+    fetch(`${baseURL}/tasks`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
