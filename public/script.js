@@ -53,14 +53,17 @@ function fetchTasks() {
         });
 }
 
+
 function createTask() {
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value || 'No description.';
+    const token = localStorage.getItem('token'); // Retrieve the token from localStorage
 
     fetch(baseURL, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // Include the token in the headers
         },
         body: JSON.stringify({ title, description, status: false })
     })
@@ -69,7 +72,8 @@ function createTask() {
             fetchTasks();
             document.getElementById('title').value = '';
             document.getElementById('description').value = '';
-        });
+        })
+        .catch(error => console.error('Error creating task:', error));
 }
 
 function updateTask(id) {
@@ -178,10 +182,10 @@ function deleteTask(id) {
         .then(() => fetchTasks());
 }
 
-document.getElementById('title').addEventListener("keydown", function(event) {
+document.getElementById('title').addEventListener("keydown", function (event) {
     // Check if the Enter key is pressed
     if (event.key === "Enter") {
-      event.preventDefault(); // Prevent form submission (if inside a form)
-      createTask(); // Call the function
+        event.preventDefault(); // Prevent form submission (if inside a form)
+        createTask(); // Call the function
     }
-  });
+});

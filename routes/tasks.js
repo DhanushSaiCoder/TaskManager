@@ -1,8 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const { Task, validate } = require('../models/Task')
+const authenticateToken = require('../middlewares/authenticateToken')
 const router = express.Router()
-
 router.get('/', async (req, res) => {
     try {
         const tasks = await Task.find()
@@ -24,21 +24,30 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-
-router.post('/', async (req, res) => {
+router.post('/', authenticateToken, async (req, res) => {
     try {
         const { error, value } = validate(req.body);
-        if (error) { return res.status(400).send(error.details[0].message); }
+        if (error) {
+            return res.status(400).send(error.details[0].message);
+        }
 
-        const task = new Task(value);
+        // Create a new task and include the user ID
+        const task = new Task({
+            title: value.title,
+            description: value.description,
+            user: req.user.userId // Ensure `userId` is part of the decoded token payload
+        });
 
-        const result = await task.save()
-        res.status(200).send(result)
+        const result = await task.save();
+        res.status(200).send(result);
 
     } catch (err) {
-        console.error('error in post route', err)
+        console.error('error in post route', err);
+        res.status(500).send('Server error');
     }
-})
+});
+
+
 
 router.patch('/:id', async (req, res) => {
     try {
