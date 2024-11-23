@@ -31,27 +31,44 @@ document.getElementById('newTaskBtn').onclick = () => {
 
 }
 
-function fetchTasks() {
-    fetch(baseURL)
-        .then(response => response.json())
-        .then(tasks => {
-            const tasksDiv = document.getElementById('tasks');
-            tasksDiv.innerHTML = '';
-            tasks.forEach(task => {
-                const taskDiv = document.createElement('div');
-                if (task.status) { taskDiv.id = 'completed' }
-                taskDiv.className = 'task';
-                taskDiv.innerHTML = `
-                    <h3 class="h3">${task.title}</h3>
-                    <p class="description">${task.description}</p>
-                    <button class="updateBtn" onclick="updateTask('${task._id}')">Update</button>
-                    <button class="deleteBtn" onclick="deleteTask('${task._id}')">Delete</button>
-                `;
-                // document.getElementById('')
-                tasksDiv.appendChild(taskDiv);
-            });
+async function fetchTasks() {
+    const token = localStorage.getItem('token');
+    try {
+        const response = await fetch(baseURL, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
         });
+
+        if (!response.ok) {
+            const text = await response.text();
+            throw new Error(text);
+        }
+
+        const tasks = await response.json();
+        const tasksDiv = document.getElementById('tasks');
+        tasksDiv.innerHTML = '';
+        
+        tasks.forEach(task => {
+            const taskDiv = document.createElement('div');
+            if (task.status) { taskDiv.id = 'completed'; }
+            taskDiv.className = 'task';
+            taskDiv.innerHTML = `
+                <h3 class="h3">${task.title}</h3>
+                <p class="description">${task.description}</p>
+                <button class="updateBtn" onclick="updateTask('${task._id}')">Update</button>
+                <button class="deleteBtn" onclick="deleteTask('${task._id}')">Delete</button>
+            `;
+            tasksDiv.appendChild(taskDiv);
+        });
+    } catch (error) {
+        console.error('Error fetching tasks:', error.message);
+        alert('Failed to fetch tasks: ' + error.message); // Optionally, display error to the user
+    }
 }
+
 
 
 function createTask() {

@@ -3,9 +3,9 @@ const mongoose = require('mongoose')
 const { Task, validate } = require('../models/Task')
 const authenticateToken = require('../middlewares/authenticateToken')
 const router = express.Router()
-router.get('/', async (req, res) => {
+router.get('/', authenticateToken, async (req, res) => {
     try {
-        const tasks = await Task.find()
+        const tasks = await Task.find({user: req.user.userId})
         res.send(tasks)
     } catch (err) {
         console.error('error while getting tasks', err)
