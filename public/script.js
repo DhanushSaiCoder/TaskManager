@@ -2,7 +2,7 @@ window.process = { env: { NODE_ENV: 'production' } };
 
 const URL =
     process.env.NODE_ENV === "production"
-        ? "https://your-deployed-url.com"
+        ? "https://taskmanager-production-c770.up.railway.app"
         : "http://localhost:3000";
 const baseURL = `${URL}/auth/signup`;
 
