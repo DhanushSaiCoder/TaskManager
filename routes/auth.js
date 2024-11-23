@@ -5,13 +5,15 @@ const User = require("../models/User");
 const path = require('path');
 const router = express.Router();
 
+// Serve the signup page
 router.get('/signup', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/signup.html'))
-})
+  res.sendFile(path.join(__dirname, '../public/signup.html'));
+});
 
+// Serve the login page
 router.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/login.html'))
-})
+  res.sendFile(path.join(__dirname, '../public/login.html'));
+});
 
 // Signup Route - Hash the password before saving
 router.post("/signup", async (req, res) => {
@@ -28,14 +30,16 @@ router.post("/signup", async (req, res) => {
     const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
 
-    res.status(201).json({ message: "User created successfully" });
-  } catch (err) {
+    // Generate JWT token for the new user
+    const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
+    res.status(201).json({ message: "User created successfully", token });
+  } catch (err) {
     res.status(500).send(err.message);
   }
 });
 
-// Login Route - Compare the entered password with the hashed 
+// Login Route - Compare the entered password with the hashed password
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -61,6 +65,5 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
-
 
 module.exports = router;

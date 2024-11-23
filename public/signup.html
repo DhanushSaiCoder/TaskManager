@@ -91,32 +91,32 @@
     <script>
       const url = "http://localhost:3000/auth/signup";
       const form = document.getElementById("signupForm");
-
+    
       form.onsubmit = (event) => {
         event.preventDefault();
-
+    
         var username = document.getElementById("username").value;
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
-
+    
         fetch(url, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username,
-            email,
-            password,
-          }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, email, password })
         })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-            window.location.href = "/auth/login";
-          })
-          .catch((error) => console.error("Can't post user", error));
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.token) {
+            localStorage.setItem("token", data.token);
+            console.log("Sign-up and login successful", data);
+            window.location.href = "/"; // Redirect to homepage
+          } else {
+            alert("Sign-up failed, please try again.");
+          }
+        })
+        .catch((error) => console.error("Can't post user", error));
       };
     </script>
+    
   </body>
 </html>
