@@ -2,7 +2,7 @@ window.process = { env: { NODE_ENV: 'production' } };
 
 const URL =
     process.env.NODE_ENV === "production"
-        ? "https://taskmanager-production-c770.up.railway.app"
+        ? "https://taskmanager-dhanush.up.railway.app"
         : "http://localhost:3000";
 const baseURL = `${URL}`;
 
@@ -24,16 +24,7 @@ document.getElementById('newTaskBtn').onclick = () => {
     document.getElementById('newTaskBtn').style.display = "none"
 
     taskFormSection.style.display = 'flex';
-    // tasksSection.style.position = "fixed";
-    // tasksSection.style.top = "0";
-    // tasksSection.style.right = "0";
-    // tasksSection.style.width = "60vw"; // Adjust to 70vw if needed
-    // tasksSection.style.height = "100vh";
-    // tasksSection.style.padding = "10px";
-    // tasksSection.style.display = "flex";
-    // tasksSection.style.flexDirection = "column";
-    // tasksSection.style.alignItems = "center";
-    // tasksSection.style.overflowY = "scroll";
+   
 
 }
 
