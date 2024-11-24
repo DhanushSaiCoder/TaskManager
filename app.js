@@ -12,7 +12,7 @@ app.use(express.static('public'));
 app.use('/auth', require('./routes/auth'));
 
 // Ensure correct MONGO_URI
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, tls: true })
     .then(() => {
         console.log('Connected to DB');
         app.listen(PORT, () => {
