@@ -162,7 +162,7 @@
               console.log("Sign-up and login successful", data);
               window.location.href = "/"; // Redirect to homepage
             } else {
-              errorMessage.textContent = "Sign-up failed, please try again.";
+              errorMessage.textContent = `${data.errorMessage}\nSign-up failed, please try again.`;
               errorMessage.style.display = "block";
             }
           })
