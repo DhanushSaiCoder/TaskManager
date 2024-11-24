@@ -68,8 +68,11 @@ async function fetchTasks() {
         });
     } catch (error) {
         console.error('Error fetching tasks:', error.message);
-        alert('Error fetching tasks:', error.message);
+        // alert('Error fetching tasks:', error.message);
 
+        localStorage.removeItem('token')
+        window.location.href = '/auth/login';
+        return;
         
     }
 }
