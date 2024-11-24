@@ -30,6 +30,12 @@ document.getElementById('newTaskBtn').onclick = () => {
 
 async function fetchTasks() {
     const token = localStorage.getItem('token');
+    if (!token) {
+        // Redirect to login if token is not found
+        window.location.href = '/auth/login';
+        return;
+    }
+    
     try {
         const response = await fetch(`${baseURL}/tasks`, {
             method: 'GET',
