@@ -2,7 +2,11 @@ window.process = { env: { NODE_ENV: 'production' } };
 
 const URL =
     process.env.NODE_ENV === "production"
+<<<<<<< HEAD
         ? "https://taskmanager-dhanush.up.railway.app"
+=======
+        ? "https://taskmanager-dhanush.up.railway.app/"
+>>>>>>> ddf2eecad8e589e2a4d0c6001b3fba8ac829c06c
         : "http://localhost:3000";
 const baseURL = `${URL}`;
 
@@ -190,6 +194,9 @@ function saveTaskChanges(id, updatedTask) {
 }
 
 function deleteTask(id) {
+  if (!confirm('Are you sure?')) {
+    return;
+  }
     fetch(`${baseURL}/tasks/${id}`, {
         method: 'DELETE',
     })
@@ -205,6 +212,9 @@ document.getElementById('title').addEventListener("keydown", function (event) {
 });
 
 function logOut() {
+  if (!confirm('Are you sure?')) {
+  return;
+}
     localStorage.removeItem('token')
     window.location.href = '/auth/login'
 }
