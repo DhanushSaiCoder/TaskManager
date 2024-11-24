@@ -31,7 +31,7 @@ document.getElementById('newTaskBtn').onclick = () => {
 async function fetchTasks() {
     const token = localStorage.getItem('token');
     if (!token) {
-        // Redirect to login if token is not found
+        localStorage.removeItem('token')
         window.location.href = '/auth/login';
         return;
     }
@@ -68,7 +68,9 @@ async function fetchTasks() {
         });
     } catch (error) {
         console.error('Error fetching tasks:', error.message);
-        alert('Failed to fetch tasks: ' + error.message); // Optionally, display error to the user
+        alert('Error fetching tasks:', error.message);
+
+        
     }
 }
 
