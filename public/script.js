@@ -29,7 +29,7 @@ document.getElementById('newTaskBtn').onclick = () => {
     document.getElementById('newTaskBtn').style.display = "none"
 
     tasksSection.style.maxWidth = "45vw";
-    tasksSection.style.border = "2px solid red"
+    // tasksSection.style.border = "2px solid red"
     taskFormSection.style.display = 'flex';
    
 
