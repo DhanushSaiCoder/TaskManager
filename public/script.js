@@ -18,8 +18,8 @@ document.getElementById('closeBtn').onclick = () => {
     document.getElementById('newTaskBtn').style.display = "block"
 
     taskFormSection.style.display = 'none';
-    tasksSection.style.maxWidth = "70vw";
-    tasksSection.style.border = "2px solid red"
+    tasksSection.style.maxWidth = "75vw";
+    // tasksSection.style.border = "2px solid red"
 }
 
 //new task btn
@@ -28,6 +28,8 @@ document.getElementById('newTaskBtn').onclick = () => {
     const tasksSection = document.getElementById('tasksSection')
     document.getElementById('newTaskBtn').style.display = "none"
 
+    tasksSection.style.maxWidth = "45vw";
+    tasksSection.style.border = "2px solid red"
     taskFormSection.style.display = 'flex';
    
 
