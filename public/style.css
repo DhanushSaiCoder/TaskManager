@@ -37,7 +37,7 @@ body {
   max-width: 60%;
 }
 
-/* Tasks container styling */
+/* S container styling */
 #tasks {
   display: flex;
   flex-direction: row;
@@ -164,6 +164,7 @@ body {
   height: 100%;
   padding: 30px 15px;
   border: none;
+  border: 1px solid red;
 }
 
 #taskSection::-webkit-scrollbar {
@@ -335,6 +336,10 @@ button:hover {
 }
 .hidden-button {
   display: none;
+}
+
+#tasksSection{
+
 }
 @media (max-width: 1200px) {
   #taskFormSection {
