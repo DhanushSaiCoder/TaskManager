@@ -283,12 +283,13 @@ body {
 
 #taskFormSection,
 #tasksSection {
-  max-width: 640px;
   overflow-y: visible;
 }
 
 #taskFormSection {
   height: 100vh;
+  max-width: 640px;
+
 }
 
 #newTaskBtnDiv {
