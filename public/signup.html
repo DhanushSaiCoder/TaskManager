@@ -59,6 +59,29 @@
         color: #000000;
         font-weight: 750;
         margin-top: 20px;
+        position: relative;
+      }
+      #signUpBtn.loading::after {
+        content: " ";
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        border: 2px solid #fff;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: spin 0.75s linear infinite;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      @keyframes spin {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
       }
       #link {
         color: #6363ff;
@@ -132,21 +155,26 @@
 
         errorMessage.style.display = "none"; // Hide error message by default
 
+        const button = document.getElementById('signUpBtn');
+        button.classList.add('loading');
+
         // Simple validation
         if (!username) {
           errorMessage.textContent = "Please enter a valid username.";
           errorMessage.style.display = "block";
+          button.classList.remove('loading');
           return;
         }
         if (!email || !validateEmail(email)) {
           errorMessage.textContent = "Please enter a valid email address.";
           errorMessage.style.display = "block";
+          button.classList.remove('loading');
           return;
         }
         if (!password || password.length < 6) {
-          errorMessage.textContent =
-            "Password must be at least 6 characters long.";
+          errorMessage.textContent = "Password must be at least 6 characters long.";
           errorMessage.style.display = "block";
+          button.classList.remove('loading');
           return;
         }
 
@@ -157,6 +185,7 @@
         })
           .then((response) => response.json())
           .then((data) => {
+            button.classList.remove('loading');
             if (data.token) {
               localStorage.setItem("token", data.token);
               console.log("Sign-up and login successful", data);
@@ -167,6 +196,7 @@
             }
           })
           .catch((error) => {
+            button.classList.remove('loading');
             console.error("Can't post user", error);
             errorMessage.textContent = "An error occurred, please try again.";
             errorMessage.style.display = "block";
