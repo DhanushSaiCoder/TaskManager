@@ -292,7 +292,7 @@ body {
   border: 1px solid red;
 }
 #tasksSection{
-  max-width: 720px;
+  max-width: 40vw;
 }
 
 #newTaskBtnDiv {
@@ -351,5 +351,8 @@ button:hover {
     border: none;
     border-bottom: 1px solid gray;
     height: auto;
+  }
+  #tasksSection{
+    max-width: 100vw;
   }
 }
