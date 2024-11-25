@@ -293,7 +293,7 @@ body {
   max-width: 640px;
   /* border: 1px solid red; */
 }
-#tasksSection{
+#tasksSection {
   max-width: 40vw;
 }
 
@@ -345,8 +345,38 @@ button:hover {
   display: none;
 }
 
-#tasksSection{
-
+#tasksSection {
+}
+#logOut,
+#addBtn {
+  position: relative;
+}
+#logOut.loading,
+#addBtn.loading {
+  color: transparent; /* Hide the text */
+}
+#logOut.loading::after,
+#addBtn.loading::after {
+  content: " ";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid #000; /* Dark color for visibility */
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 @media (max-width: 1200px) {
   #taskFormSection {
@@ -354,7 +384,7 @@ button:hover {
     border-bottom: 1px solid gray;
     height: auto;
   }
-  #tasksSection{
+  #tasksSection {
     max-width: 100vw;
   }
 }
