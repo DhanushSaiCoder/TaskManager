@@ -253,13 +253,15 @@ body {
 }
 
 #logOut {
-  padding: 5px 10px;
+  padding: 5px 5px;
   background: transparent;
   border: none;
   background-color: #e2e2e2;
   border-radius: 5px;
   color: #040600;
-  font-weight: 750;
+  font-weight: 600;
+  font-size: small;
+  width: 75px;
 }
 
 /* Media queries and adjustments */
