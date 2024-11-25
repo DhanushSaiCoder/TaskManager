@@ -164,7 +164,7 @@ body {
   height: 100%;
   padding: 30px 15px;
   border: none;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 #taskSection::-webkit-scrollbar {
@@ -280,7 +280,7 @@ body {
   height: calc(auto + 100vw);
   flex-wrap: wrap;
   min-width: 300px;
-  border: 1px dotted blue;
+  /* border: 1px dotted blue; */
 }
 
 #taskFormSection,
@@ -291,7 +291,7 @@ body {
 #taskFormSection {
   height: 100vh;
   max-width: 640px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 #tasksSection{
   max-width: 40vw;
