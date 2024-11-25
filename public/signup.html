@@ -61,12 +61,15 @@
         margin-top: 20px;
         position: relative;
       }
+      #signUpBtn.loading {
+        color: transparent; /* Hide the text */
+      }
       #signUpBtn.loading::after {
         content: " ";
         display: inline-block;
         width: 1em;
         height: 1em;
-        border: 2px solid #fff;
+        border: 2px solid #000; /* Changed to dark color */
         border-right-color: transparent;
         border-radius: 50%;
         animation: spin 0.75s linear infinite;
