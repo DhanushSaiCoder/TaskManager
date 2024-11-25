@@ -82,6 +82,13 @@ function createTask() {
     const token = localStorage.getItem('token');
 
     const addBtn = document.getElementById('addBtn');
+    if(title === ''){
+        document.getElementById('noTask').innerHTML =`<i>Enter task name.</i>`
+    }
+    else{
+        document.getElementById('noTask').innerHTML =``
+
+    }
     addBtn.classList.add('loading');
 
     fetch(`${baseURL}/tasks`, {
