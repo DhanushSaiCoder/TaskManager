@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', fetchTasks);
 
 document.getElementById('newTaskBtn').style.display = "none"
 
+
+//close btn
 document.getElementById('closeBtn').onclick = () => {
     const taskFormSection = document.getElementById("taskFormSection")
     const tasksSection = document.getElementById('tasksSection')
@@ -17,7 +19,10 @@ document.getElementById('closeBtn').onclick = () => {
 
     taskFormSection.style.display = 'none';
     tasksSection.style.width = "100vw";
+    tasksSection.style.border = "2px solid red"
 }
+
+//new task btn
 document.getElementById('newTaskBtn').onclick = () => {
     const taskFormSection = document.getElementById("taskFormSection")
     const tasksSection = document.getElementById('tasksSection')
