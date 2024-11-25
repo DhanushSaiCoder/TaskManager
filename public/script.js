@@ -8,41 +8,36 @@ const baseURL = `${URL}`;
 
 document.addEventListener('DOMContentLoaded', fetchTasks);
 
-document.getElementById('newTaskBtn').style.display = "none"
+document.getElementById('newTaskBtn').style.display = "none";
 
-
-//close btn
+// Close button
 document.getElementById('closeBtn').onclick = () => {
-    const taskFormSection = document.getElementById("taskFormSection")
-    const tasksSection = document.getElementById('tasksSection')
-    document.getElementById('newTaskBtn').style.display = "block"
+    const taskFormSection = document.getElementById("taskFormSection");
+    const tasksSection = document.getElementById('tasksSection');
+    document.getElementById('newTaskBtn').style.display = "block";
 
     taskFormSection.style.display = 'none';
     tasksSection.style.maxWidth = "75vw";
-    // tasksSection.style.border = "2px solid red"
-}
+};
 
-//new task btn
+// New task button
 document.getElementById('newTaskBtn').onclick = () => {
-    const taskFormSection = document.getElementById("taskFormSection")
-    const tasksSection = document.getElementById('tasksSection')
-    document.getElementById('newTaskBtn').style.display = "none"
+    const taskFormSection = document.getElementById("taskFormSection");
+    const tasksSection = document.getElementById('tasksSection');
+    document.getElementById('newTaskBtn').style.display = "none";
 
     tasksSection.style.maxWidth = "45vw";
-    // tasksSection.style.border = "2px solid red"
     taskFormSection.style.display = 'flex';
-   
-
-}
+};
 
 async function fetchTasks() {
     const token = localStorage.getItem('token');
     if (!token) {
-        localStorage.removeItem('token')
+        localStorage.removeItem('token');
         window.location.href = '/auth/login';
         return;
     }
-    
+
     try {
         const response = await fetch(`${baseURL}/tasks`, {
             method: 'GET',
@@ -75,27 +70,25 @@ async function fetchTasks() {
         });
     } catch (error) {
         console.error('Error fetching tasks:', error.message);
-        // alert('Error fetching tasks:', error.message);
-
-        localStorage.removeItem('token')
+        localStorage.removeItem('token');
         window.location.href = '/auth/login';
         return;
-        
     }
 }
-
-
 
 function createTask() {
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value || 'No description.';
-    const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+    const token = localStorage.getItem('token');
+
+    const addBtn = document.getElementById('addBtn');
+    addBtn.classList.add('loading');
 
     fetch(`${baseURL}/tasks`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` // Include the token in the headers
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ title, description, status: false })
     })
@@ -104,8 +97,12 @@ function createTask() {
             fetchTasks();
             document.getElementById('title').value = '';
             document.getElementById('description').value = '';
+            addBtn.classList.remove('loading');
         })
-        .catch(error => console.error('Error creating task:', error));
+        .catch(error => {
+            console.error('Error creating task:', error);
+            addBtn.classList.remove('loading');
+        });
 }
 
 function updateTask(id) {
@@ -123,15 +120,11 @@ function updateTask(id) {
         })
         .then(task => {
             fetchTasks();
-
-            // Log the task
             console.log(task);
 
-            // Create the popup
             const popup = document.createElement('div');
             popup.id = 'popup';
             popup.className = 'popup';
-
 
             popup.innerHTML = `
                 <div id="popupHeader">
@@ -156,16 +149,9 @@ function updateTask(id) {
                     <p><strong>Created At:</strong> ${new Date(task.createdAt).toLocaleString()}</p>
                     </div>
                 </div>
-                
-
                 <button id="saveChanges">Save Changes</button>
             `;
 
-
-
-            // Append the button to the popup
-
-            // Add event listener for saving changes
             popup.querySelector('#saveChanges').onclick = () => {
                 const updatedTask = {
                     title: document.getElementById('taskTitle').value,
@@ -176,7 +162,6 @@ function updateTask(id) {
                 popup.remove();
             };
 
-            // Add the popup to the document body
             document.body.appendChild(popup);
         })
         .catch(error => {
@@ -186,21 +171,21 @@ function updateTask(id) {
 
 function saveTaskChanges(id, updatedTask) {
     fetch(`${baseURL}/tasks/${id}`, {
-        method: 'PATCH', // HTTP method to update the task
+        method: 'PATCH',
         headers: {
-            'Content-Type': 'application/json', // Specify JSON format
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(updatedTask), // Convert the updated task object to a JSON string
+        body: JSON.stringify(updatedTask),
     })
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to update the task');
             }
-            return response.json(); // Parse the response JSON
+            return response.json();
         })
         .then(data => {
             console.log('Task updated successfully:', data);
-            fetchTasks(); // Refresh the task list to reflect the changes
+            fetchTasks();
         })
         .catch(error => {
             console.error('Error updating task:', error);
@@ -208,9 +193,9 @@ function saveTaskChanges(id, updatedTask) {
 }
 
 function deleteTask(id) {
-  if (!confirm('Are you sure?')) {
-    return;
-  }
+    if (!confirm('Are you sure?')) {
+        return;
+    }
     fetch(`${baseURL}/tasks/${id}`, {
         method: 'DELETE',
     })
@@ -218,17 +203,22 @@ function deleteTask(id) {
 }
 
 document.getElementById('title').addEventListener("keydown", function (event) {
-    // Check if the Enter key is pressed
     if (event.key === "Enter") {
-        event.preventDefault(); // Prevent form submission (if inside a form)
-        createTask(); // Call the function
+        event.preventDefault();
+        createTask();
     }
 });
 
 function logOut() {
-  if (!confirm('Are you sure?')) {
-  return;
-}
-    localStorage.removeItem('token')
-    window.location.href = '/auth/login'
+    if (!confirm('Are you sure?')) {
+        return;
+    }
+    const logOutButton = document.getElementById('logOut');
+    logOutButton.classList.add('loading');
+
+    setTimeout(() => {
+        logOutButton.classList.remove('loading');
+        localStorage.removeItem('token');
+        window.location.href = '/auth/login';
+    }, 2000);
 }
