@@ -13,7 +13,39 @@
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
       rel="stylesheet"
     />
-    
+    <style>
+      #logOut, #addBtn {
+        position: relative;
+      }
+
+      #logOut.loading, #addBtn.loading {
+        color: transparent; /* Hide the text */
+      }
+
+      #logOut.loading::after, #addBtn.loading::after {
+        content: " ";
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        border: 2px solid #000; /* Dark color for visibility */
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: spin 0.75s linear infinite;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      @keyframes spin {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="taskFormSection">
@@ -53,11 +85,36 @@
       if (!localStorage.getItem("token")) {
         window.location.href = "/auth/login";
       }
+
       const button = document.getElementById("closeBtn");
       if (window.innerWidth < 768) {
         button.classList.add("hidden-button");
       } else {
         button.classList.remove("hidden-button");
+      }
+
+      function logOut() {
+        const logOutButton = document.getElementById('logOut');
+        logOutButton.classList.add('loading');
+        
+        // Simulate logout process
+        setTimeout(() => {
+          logOutButton.classList.remove('loading');
+          localStorage.removeItem('token');
+          window.location.href = "/auth/login"; // Redirect to login page
+        }, 2000); // Simulate some delay for the log out
+      }
+
+      function createTask() {
+        const addBtn = document.getElementById('addBtn');
+        addBtn.classList.add('loading');
+
+        // Simulate task creation process
+        setTimeout(() => {
+          addBtn.classList.remove('loading');
+          alert('Task added successfully!');
+          // Add your task creation logic here
+        }, 2000); // Simulate some delay for task creation
       }
     </script>
     <script src="script.js"></script>
