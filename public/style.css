@@ -291,6 +291,9 @@ body {
   max-width: 640px;
 
 }
+#tasksSection{
+  max-width: 720px;
+}
 
 #newTaskBtnDiv {
   z-index: 9;
