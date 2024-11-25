@@ -18,7 +18,7 @@ document.getElementById('closeBtn').onclick = () => {
     document.getElementById('newTaskBtn').style.display = "block"
 
     taskFormSection.style.display = 'none';
-    tasksSection.style.maxWidth = "100vw";
+    tasksSection.style.maxWidth = "70vw";
     tasksSection.style.border = "2px solid red"
 }
 
