@@ -181,10 +181,7 @@ body {
   font-weight: 500;
 }
 
-.updateBtn {
-  border-bottom: 1px solid #e2e2e252;
-  border-top: 1px solid #e2e2e24d;
-}
+
 
 .h3,
 .p {
@@ -345,8 +342,7 @@ button:hover {
   display: none;
 }
 
-#tasksSection {
-}
+
 #logOut,
 #addBtn {
   position: relative;
@@ -410,6 +406,12 @@ button:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.updateBtn {
+  border-bottom: 1px solid #363636af;
+  border-top: 1px solid #363636af;
+
 }
 
 /* Keyframe for spinner animation */
