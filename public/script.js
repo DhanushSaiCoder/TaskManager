@@ -106,6 +106,9 @@ function createTask() {
 }
 
 function updateTask(id) {
+    const updateBtn = document.querySelector(`.updateBtn[onclick="updateTask('${id}')"]`);
+    updateBtn.classList.add('loading');
+
     fetch(`${baseURL}/tasks/${id}`, {
         method: 'GET',
         headers: {
@@ -163,9 +166,11 @@ function updateTask(id) {
             };
 
             document.body.appendChild(popup);
+            updateBtn.classList.remove('loading');
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
+            updateBtn.classList.remove('loading');
         });
 }
 
@@ -196,10 +201,18 @@ function deleteTask(id) {
     if (!confirm('Are you sure?')) {
         return;
     }
+    const deleteBtn = document.querySelector(`.deleteBtn[onclick="deleteTask('${id}')"]`);
+    deleteBtn.classList.add('loading');
+
     fetch(`${baseURL}/tasks/${id}`, {
         method: 'DELETE',
     })
-        .then(() => fetchTasks());
+        .then(() => fetchTasks())
+        .then(() => deleteBtn.classList.remove('loading'))
+        .catch(error => {
+            console.error('Error deleting task:', error);
+            deleteBtn.classList.remove('loading');
+        });
 }
 
 document.getElementById('title').addEventListener("keydown", function (event) {
