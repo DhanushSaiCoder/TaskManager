@@ -289,7 +289,7 @@ body {
 #taskFormSection {
   height: 100vh;
   max-width: 640px;
-
+  border: 1px solid red;
 }
 #tasksSection{
   max-width: 720px;
