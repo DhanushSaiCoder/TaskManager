@@ -82,14 +82,15 @@ function createTask() {
     const token = localStorage.getItem('token');
 
     const addBtn = document.getElementById('addBtn');
-    if(title === ''){
-        document.getElementById('noTask').innerHTML =`<i>Enter task name.</i>`
+    if (title === '' || title.length < 3) {  // Corrected 'title.length()' to 'title.length'
+        document.getElementById('noTask').innerHTML = `<i>Enter task name.</i>`;
         return;
+    } else {
+        document.getElementById('noTask').innerHTML = '';
     }
-    else{
-        document.getElementById('noTask').innerHTML =``
 
-    }
+    // Your additional code for what happens after validation passes goes here.
+
     addBtn.classList.add('loading');
 
     fetch(`${baseURL}/tasks`, {
