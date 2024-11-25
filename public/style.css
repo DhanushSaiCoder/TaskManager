@@ -278,6 +278,7 @@ body {
   height: calc(auto + 100vw);
   flex-wrap: wrap;
   min-width: 300px;
+  border: 1px dotted blue;
 }
 
 #taskFormSection,
