@@ -84,6 +84,7 @@ function createTask() {
     const addBtn = document.getElementById('addBtn');
     if(title === ''){
         document.getElementById('noTask').innerHTML =`<i>Enter task name.</i>`
+        return;
     }
     else{
         document.getElementById('noTask').innerHTML =``
