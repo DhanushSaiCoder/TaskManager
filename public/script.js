@@ -83,7 +83,7 @@ function createTask() {
 
     const addBtn = document.getElementById('addBtn');
     if (title === '' || title.length < 3) {  // Corrected 'title.length()' to 'title.length'
-        document.getElementById('noTask').innerHTML = `<i>Enter task name.</i>`;
+        document.getElementById('noTask').innerHTML = `<i>Enter valid task name.</i>`;
         return;
     } else {
         document.getElementById('noTask').innerHTML = '';
